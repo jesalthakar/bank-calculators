@@ -10,23 +10,33 @@
     }
 
     .tabs-container {
+        display: flex;
+        gap: 10px;
 
         .tabs {
             font-size: 14px;
             font-family: Arial, Helvetica, sans-serif;
             border-radius: 8px;
             max-width: max-content;
-            padding: 5px;
-            background-color: #0a68cc;
+            padding: 6px 12px;
+            color: #000000;
             border-color: #0a68cc;
-            color: white;
 
             @include mobile {
                 font-size: 12px;
 
             }
+
+        }
+
+        .active {
+            background-color: #0a68cc;
+            border-color: #0a68cc;
+            color: white
         }
     }
+
+
 
     .calculator-inputs-container {
         margin-top: 10px;

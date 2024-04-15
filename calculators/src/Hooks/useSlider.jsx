@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const useSlider = (SipData) => {
+const useSlider = (SipData, activeTab) => {
   const [sliderValue, setSliderValue] = useState({});
   const [sliderWidth, setSliderWidth] = useState({});
 
@@ -11,18 +11,19 @@ const useSlider = (SipData) => {
     const initialValues = {};
     const initialWidths = {};
 
-    SipData.rangeinfo.forEach((sliderinfo) => {
-      console.log(sliderinfo);
-      console.log("max" + sliderinfo.max, "min" + sliderinfo.min);
-      initialValues[sliderinfo.sliderType] = sliderinfo.defaultvalue;
-      initialWidths[sliderinfo.sliderType] =
-        ((Number(sliderinfo.defaultvalue) - Number(sliderinfo.min)) * 100) /
-        (Number(sliderinfo.max) - Number(sliderinfo.min));
+    SipData.calType[activeTab].rangeinfo.forEach((eachSliderInfo) => {
+      console.log(eachSliderInfo);
+      console.log("max" + eachSliderInfo.max, "min" + eachSliderInfo.min);
+      initialValues[eachSliderInfo.sliderType] = eachSliderInfo.defaultvalue;
+      initialWidths[eachSliderInfo.sliderType] =
+        ((Number(eachSliderInfo.defaultvalue) - Number(eachSliderInfo.min)) *
+          100) /
+        (Number(eachSliderInfo.max) - Number(eachSliderInfo.min));
     });
 
     setSliderValue(initialValues);
     setSliderWidth(initialWidths);
-  }, []);
+  }, [activeTab]);
 
   const handleSlider = (e, sliderType) => {
     const { value, max, min } = e.target;
