@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { SipData } from "../Sipcalculator/constants";
 import useSlider from "../../Hooks/useSlider";
 import { localizedCurrency } from "../../Commons/services/helper";
+import { calculateFutureYears } from "../../Commons/services/helper";
 
 const Slider = ({
   sliderInfo,
@@ -11,15 +12,18 @@ const Slider = ({
   handleSlider,
   error,
 }) => {
-  console.log(sliderValue);
-
   return (
     <>
       <div className="range-slider-container">
         <div className="range-info-div">
           <div className="left-info-div">
             <div className="range-title">{sliderInfo.rangetitle}</div>
-            <div className="range-desc">{sliderInfo.rangedesc}</div>
+            <div className="range-desc">
+              {sliderInfo.sliderType === "period"
+                ? sliderInfo.rangedesc +
+                  calculateFutureYears(sliderValue[sliderInfo.sliderType])
+                : sliderInfo.rangedesc}
+            </div>
           </div>
           <div className="right-info-div">
             <div

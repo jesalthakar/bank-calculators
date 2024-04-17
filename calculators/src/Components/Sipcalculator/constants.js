@@ -5,7 +5,7 @@ export const SipData = {
             "sliderType": "amt",
             "rangetitle": "Loan Amount",
             "rangedesc": "Minimum 10,000",
-            "min": 1000,
+            "min": 10000,
             "max": 100000,
             "step": 10000,
             "defaultvalue": 10000
@@ -38,10 +38,10 @@ export const SipData = {
             "sliderType": "amt",
             "rangetitle": "Loan Amount",
             "rangedesc": "Minimum 10,000",
-            "min": 100,
+            "min": 1000,
             "max": 100000,
             "step": 100,
-            "defaultvalue": 1000
+            "defaultvalue": 50000
         },
         {
             "sliderType": "roi",
@@ -50,7 +50,7 @@ export const SipData = {
             "min": 1,
             "max": 100,
             "step": 0.1,
-            "defaultvalue": 100
+            "defaultvalue": 15
 
         },
         {
@@ -60,7 +60,7 @@ export const SipData = {
             "min": 1,
             "max": 250,
             "step": 1,
-            "defaultvalue": 1
+            "defaultvalue": 10
 
         }]
     }

@@ -7,6 +7,7 @@ import Slider from "../Slider/Slider";
 import Chart from "../Chart/Chart";
 import useSlider from "../../Hooks/useSlider";
 import { getSipCalculation } from "../Sipcalculator/sipservice";
+import { getLumpsumCalculation } from "../Sipcalculator/lumpsumservice";
 import { localizedCurrency } from "../../Commons/services/helper";
 
 const Calculator = () => {
@@ -17,8 +18,12 @@ const Calculator = () => {
 
   console.log(sliderValue, sliderWidth, handleInput);
 
-  const sipResult = getSipCalculation(sliderValue);
+  const sipResult = activeTab
+    ? getLumpsumCalculation(sliderValue)
+    : getSipCalculation(sliderValue);
   console.log(sipResult);
+  /* const lumpsumResult = getLumpsumCalculation(sliderValue);
+  console.log(lumpsumResult); */
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -53,17 +58,20 @@ const Calculator = () => {
       </div>
 
       <div className="right-section">
-        <div className="primary-container">
-          <div className="primary-info-container">
-            <div className="primary-info-title">
-              Equated Monthly Instalments (EMI)
+        <div className="sticky-section-mob">
+          <div className="primary-container">
+            <div className="primary-info-container">
+              <div className="primary-info-title">
+                Equated Monthly Instalments (EMI)
+              </div>
+              <div className="primary-amount">
+                {localizedCurrency(isNaN(sipResult[2]) ? 0 : sipResult[2])}
+              </div>
             </div>
-            <div className="primary-amount">
-              {localizedCurrency(isNaN(sipResult[2]) ? 0 : sipResult[2])}
-            </div>
+            <button className="btn primary-btn">Apply Now</button>
           </div>
-          <button className="btn primary-btn">Apply Now</button>
         </div>
+
         <div className="chart-container">
           <Chart amount={sipResult[0]} growth={sipResult[1]} />
           <div className="chart-data-container">
