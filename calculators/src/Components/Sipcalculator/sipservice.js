@@ -3,9 +3,6 @@
 export const getSipCalculation = (sliderValues) => {
     //fv = p*((((1+r)^n)-1)/r)
     console.log(sliderValues);
-    console.log("Hello world");
-
-
     let { amt, roi, period } = sliderValues;
     roi = parseFloat((roi / 100 / 12).toFixed(3));
     console.log(roi);
