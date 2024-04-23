@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SipData } from "../Sipcalculator/constants";
-import useSlider from "../../Hooks/useSlider";
-import { localizedCurrency } from "../../Commons/services/helper";
-import { calculateFutureYears } from "../../Commons/services/helper";
+import { SipData } from "../../../Components/Sipcalculator/constants";
+import useSlider from "../../../Hooks/useSlider";
+import { localizedCurrency } from "../../services/helper";
+import { calculateFutureYears } from "../../services/helper";
 
 const Slider = ({
   sliderInfo,

@@ -1,14 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import './Container/container.scss'
-import Container from './Container/Container';
-import Calculator from './Components/Calculator/Calculator';
+import './Commons/Components/Container/Container.scss';
+import Container from './Commons/Components/Container/Container';
+import { BrowserRouter as Router } from "react-router-dom";
+import CardsContainer from './Components/CardsContainer/CardsContainer';
+
 
 
 function App() {
   return (
     <>
-      <Container />
+      <Router>
+        <CardsContainer />
+        <Container />
+
+      </Router>
 
     </>
   );

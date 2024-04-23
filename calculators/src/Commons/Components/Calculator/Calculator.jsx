@@ -1,30 +1,23 @@
-import React, { useState } from "react";
-import "../Chart/Chart.scss";
-import "../Slider/Slider.scss";
+import React from "react";
+import "./Calculator.scss";
+import "../../Components/Chart/Chart.scss";
+import "../../../Commons/Components/Slider/Slider.scss";
 
-import { SipData } from "../Sipcalculator/constants";
-import Slider from "../Slider/Slider";
-import Chart from "../Chart/Chart";
-import useSlider from "../../Hooks/useSlider";
-import { getSipCalculation } from "../Sipcalculator/sipservice";
-import { getLumpsumCalculation } from "../Sipcalculator/lumpsumservice";
-import { localizedCurrency } from "../../Commons/services/helper";
+import Slider from "../../../Commons/Components/Slider/Slider";
+import Chart from "../../../Commons/Components/Chart/Chart";
+import { localizedCurrency } from "../../services/helper";
 
-const Calculator = () => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const { sliderValue, sliderWidth, handleInput, handleSlider, error } =
-    useSlider(SipData, activeTab);
-
-  console.log(sliderValue, sliderWidth, handleInput);
-
-  const sipResult = activeTab
-    ? getLumpsumCalculation(sliderValue)
-    : getSipCalculation(sliderValue);
-  console.log(sipResult);
-  /* const lumpsumResult = getLumpsumCalculation(sliderValue);
-  console.log(lumpsumResult); */
-
+const Calculator = ({
+  sliderValue,
+  sliderWidth,
+  handleInput,
+  error,
+  handleSlider,
+  data,
+  activeTab,
+  setActiveTab,
+  result,
+}) => {
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
@@ -33,7 +26,7 @@ const Calculator = () => {
     <>
       <div className="left-section">
         <div className="tabs-container">
-          {SipData.calType.map((tabText, index) => (
+          {data.map((tabText, index) => (
             <div
               key={index}
               className={`tabs ${activeTab === index ? "active" : ""}`}
@@ -43,8 +36,9 @@ const Calculator = () => {
             </div>
           ))}
         </div>
+
         <div className="calculator-inputs-container">
-          {SipData.calType[activeTab].rangeinfo.map((sliderInfo) => (
+          {data[activeTab].rangeinfo.map((sliderInfo) => (
             <Slider
               sliderInfo={sliderInfo}
               sliderValue={sliderValue}
@@ -65,7 +59,7 @@ const Calculator = () => {
                 Equated Monthly Instalments (EMI)
               </div>
               <div className="primary-amount">
-                {localizedCurrency(isNaN(sipResult[2]) ? 0 : sipResult[2])}
+                {localizedCurrency(isNaN(result[2]) ? 0 : result[2])}
               </div>
             </div>
             <button className="btn primary-btn">Apply Now</button>
@@ -73,16 +67,14 @@ const Calculator = () => {
         </div>
 
         <div className="chart-container">
-          <Chart amount={sipResult[0]} growth={sipResult[1]} />
+          <Chart amount={result[0]} growth={result[1]} />
           <div className="chart-data-container">
             <div className="chart-data-div">
               <div className="chart-color chart-color-1"></div>
               <div className="chart-detail invested">
                 <h5>Invested Amount</h5>
                 <div className="invest-value-wrapper">
-                  <p>
-                    {localizedCurrency(isNaN(sipResult[0]) ? 0 : sipResult[0])}
-                  </p>
+                  <p>{localizedCurrency(isNaN(result[0]) ? 0 : result[0])}</p>
                 </div>
               </div>
             </div>
@@ -91,9 +83,7 @@ const Calculator = () => {
               <div className="chart-detail invested">
                 <h5>Estimated Returns</h5>
                 <div className="invest-value-wrapper">
-                  <p>
-                    {localizedCurrency(isNaN(sipResult[1]) ? 0 : sipResult[1])}
-                  </p>
+                  <p>{localizedCurrency(isNaN(result[1]) ? 0 : result[1])}</p>
                 </div>
               </div>
             </div>
