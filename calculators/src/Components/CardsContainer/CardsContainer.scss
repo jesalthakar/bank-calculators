@@ -1,0 +1,17 @@
+@import "../../Commons/Styles/mediaQuery.scss";
+
+
+.cards-container-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    @include mobile {
+        flex-direction: column;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}

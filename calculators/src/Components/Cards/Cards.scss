@@ -1,0 +1,43 @@
+@import "../../Commons/Styles/mediaQuery.scss";
+
+.cards-link {
+    margin: 20px 15px;
+}
+
+.card-wrapper {
+    border: 1px solid #e9e9eb;
+    border-radius: 8px;
+    color: #44475b;
+    padding: 24px;
+    overflow: hidden;
+    width: 240px;
+    position: relative;
+    height: 240px;
+
+    .cards-background-image {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        bottom: 0;
+        right: 0;
+        transition: opacity .3s ease;
+        opacity: 0.4;
+
+    }
+
+    .cards-background-image:hover {
+        opacity: 1;
+
+    }
+
+    .cards-title {
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+    }
+
+    .cards-description {
+        margin-top: 12px;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+}
