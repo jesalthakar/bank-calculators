@@ -8,7 +8,9 @@ export const PersonalLoanData = {
             "min": 10000,
             "max": 1000000,
             "step": 10000,
-            "defaultvalue": 1000000
+            "defaultvalue": 1000000,
+            "isDisabled": false
+
         },
         {
             "sliderType": "roi",
@@ -17,7 +19,9 @@ export const PersonalLoanData = {
             "min": 1,
             "max": 100,
             "step": 0.1,
-            "defaultvalue": 8.7
+            "defaultvalue": 8.7,
+            "isDisabled": false
+
 
         },
         {
@@ -27,7 +31,9 @@ export const PersonalLoanData = {
             "min": 1,
             "max": 250,
             "step": 1,
-            "defaultvalue": 25
+            "defaultvalue": 25,
+            "isDisabled": false
+
 
         }]
 

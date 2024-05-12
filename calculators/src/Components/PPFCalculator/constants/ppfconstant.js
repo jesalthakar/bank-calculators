@@ -1,15 +1,26 @@
-export const HomeLoanData = {
+export const PPFData = {
     "calType": [{
-        "calText": "HOMELOAN",
+        "calText": "PPF",
         "rangeinfo": [{
             "sliderType": "amt",
             "rangetitle": "Loan Amount",
             "rangedesc": "Minimum 10,000",
-            "min": 10000,
+            "min": 1000,
             "max": 1000000,
             "step": 10000,
-            "defaultvalue": 1000000,
+            "defaultvalue": 1000,
             "isDisabled": false
+        },
+        {
+            "sliderType": "period",
+            "rangetitle": "Tenure",
+            "rangedesc": "Till ",
+            "min": 1,
+            "max": 250,
+            "step": 1,
+            "defaultvalue": 15,
+            "isDisabled": false
+
 
         },
         {
@@ -19,23 +30,9 @@ export const HomeLoanData = {
             "min": 1,
             "max": 100,
             "step": 0.1,
-            "defaultvalue": 8.7,
-            "isDisabled": false
-
-
-        },
-        {
-            "sliderType": "period",
-            "rangetitle": "Tenure",
-            "rangedesc": "Till ",
-            "min": 1,
-            "max": 250,
-            "step": 1,
-            "defaultvalue": 25,
-            "isDisabled": false
-
-
-        }]
+            "defaultvalue": 7.1,
+            "isDisabled": true
+        },]
 
     }
     ],
