@@ -38,8 +38,9 @@ const Calculator = ({
         </div>
 
         <div className="calculator-inputs-container">
-          {data[activeTab].rangeinfo.map((sliderInfo) => (
+          {data[activeTab].rangeinfo.map((sliderInfo, index) => (
             <Slider
+              key={index}
               sliderInfo={sliderInfo}
               sliderValue={sliderValue}
               sliderWidth={sliderWidth}

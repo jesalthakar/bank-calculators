@@ -1,14 +1,14 @@
-export const HomeLoanData = {
+export const RDData = {
     "calType": [{
-        "calText": "HOMELOAN",
+        "calText": "Recurring Deposit",
         "rangeinfo": [{
             "sliderType": "amt",
             "rangetitle": "Loan Amount",
             "rangedesc": "Minimum 10,000",
-            "min": 10000,
+            "min": 1000,
             "max": 1000000,
             "step": 10000,
-            "defaultvalue": 1000000,
+            "defaultvalue": 50000,
             "isDisabled": false
 
         },
@@ -19,7 +19,7 @@ export const HomeLoanData = {
             "min": 1,
             "max": 100,
             "step": 0.1,
-            "defaultvalue": 8.7,
+            "defaultvalue": 6.5,
             "isDisabled": false
 
 
@@ -31,7 +31,7 @@ export const HomeLoanData = {
             "min": 1,
             "max": 250,
             "step": 1,
-            "defaultvalue": 25,
+            "defaultvalue": 3,
             "isDisabled": false
 
 

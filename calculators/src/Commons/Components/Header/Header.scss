@@ -1,0 +1,25 @@
+@import "../../../Commons/Styles/mediaQuery.scss";
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+
+    .img-container {
+        padding-left: 10px
+    }
+
+    .auth-container {
+        padding-right: 16px;
+
+        .signin {
+            margin-right: 10px;
+        }
+
+        .signin,
+        .login {
+            cursor: pointer;
+        }
+    }
+}

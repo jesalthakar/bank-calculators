@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import Calculator from "../../Commons/Components/Calculator/Calculator";
 import useSlider from "../../Hooks/useSlider";
-import { SipData } from "../Sipcalculator/constants";
-import { getLumpsumCalculation } from "./lumpsumservice";
-import { getSipCalculation } from "./sipservice";
+import { getRDCalculation } from "./Services/rdservice";
+import Calculator from "../../Commons/Components/Calculator/Calculator";
+import { RDData } from "./Constants/constants";
 
-const SiplumpsumCalc = () => {
+const RDCalc = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const { sliderValue, sliderWidth, handleInput, handleSlider, error } =
-    useSlider(SipData, activeTab);
+    useSlider(RDData, activeTab);
 
   console.log(sliderValue, sliderWidth, handleInput);
 
-  const sipResult = activeTab
-    ? getLumpsumCalculation(sliderValue)
-    : getSipCalculation(sliderValue);
-  console.log(sipResult);
+  const result = getRDCalculation(sliderValue);
+
+  console.log(result);
   return (
     <>
       <Calculator
@@ -25,13 +23,13 @@ const SiplumpsumCalc = () => {
         handleInput={handleInput}
         error={error}
         handleSlider={handleSlider}
-        data={SipData.calType}
+        data={RDData.calType}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        result={sipResult}
+        result={result}
       />
     </>
   );
 };
 
-export default SiplumpsumCalc;
+export default RDCalc;

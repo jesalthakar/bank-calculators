@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SipData } from "../../../Components/Sipcalculator/constants";
-import useSlider from "../../../Hooks/useSlider";
-import { localizedCurrency } from "../../services/helper";
+
 import { calculateFutureYears } from "../../services/helper";
 
 const Slider = ({
@@ -31,26 +29,29 @@ const Slider = ({
                 error[sliderInfo.sliderType] ? "error" : ""
               }`}
             >
-              <input
-                type="text"
-                value={
-                  sliderInfo.sliderType === "amt"
-                    ? localizedCurrency(
-                        isNaN(sliderValue[sliderInfo.sliderType])
-                          ? 0
-                          : sliderValue[sliderInfo.sliderType]
-                      )
-                    : sliderValue[sliderInfo.sliderType]
-                }
-                min={sliderInfo.min}
-                max={sliderInfo.max}
-                step={sliderInfo.step}
-                onChange={(e) => handleInput(e, sliderInfo.sliderType)}
-              ></input>
+              <div className="input-container">
+                <span class="input-prefix">{sliderInfo.prefix}</span>
+                <input
+                  type="text"
+                  value={sliderValue[sliderInfo.sliderType]}
+                  min={sliderInfo.min}
+                  max={sliderInfo.max}
+                  step={sliderInfo.step}
+                  disabled={sliderInfo.isDisabled ? "disabled" : ""}
+                  pattern="^-?\d+(?:\.\d+)?$"
+                  onChange={(e) => handleInput(e, sliderInfo.sliderType)}
+                ></input>
+
+                <span class="input-suffix">{sliderInfo.suffix}</span>
+              </div>
             </div>
           </div>
         </div>
-        <div className="filler-container">
+        <div
+          className={`filler-container ${
+            sliderInfo.isDisabled ? "dsp-none" : ""
+          }`}
+        >
           <div className="filler-div"></div>
           <span
             className="filler"

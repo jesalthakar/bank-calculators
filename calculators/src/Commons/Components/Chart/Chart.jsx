@@ -16,10 +16,10 @@ const Chart = ({ amount, growth }) => {
   };
 
   const options = {
-    cutoutPercentage: 50, // Adjust the size of the center hole
+    cutoutPercentage: 50,
     elements: {
       arc: {
-        innerRadius: 100, // Adjust the inner radius of the doughnut
+        innerRadius: 100,
       },
     },
   };

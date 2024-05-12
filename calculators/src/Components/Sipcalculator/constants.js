@@ -8,7 +8,9 @@ export const SipData = {
             "min": 10000,
             "max": 100000,
             "step": 10000,
-            "defaultvalue": 10000
+            "defaultvalue": 10000,
+            "prefix": "Rs",
+            "suffix": "",
         },
         {
             "sliderType": "roi",
@@ -17,8 +19,9 @@ export const SipData = {
             "min": 1,
             "max": 100,
             "step": 0.1,
-            "defaultvalue": 10
-
+            "defaultvalue": 10,
+            "prefix": "",
+            "suffix": "%"
         },
         {
             "sliderType": "period",
@@ -27,8 +30,9 @@ export const SipData = {
             "min": 1,
             "max": 250,
             "step": 1,
-            "defaultvalue": 1
-
+            "defaultvalue": 1,
+            "prefix": "",
+            "suffix": "yrs"
         }]
 
     },

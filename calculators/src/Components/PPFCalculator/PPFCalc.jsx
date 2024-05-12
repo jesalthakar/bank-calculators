@@ -1,22 +1,19 @@
 import React, { useState } from "react";
+import { PPFData } from "./constants/ppfconstant";
 import Calculator from "../../Commons/Components/Calculator/Calculator";
 import useSlider from "../../Hooks/useSlider";
-import { SipData } from "../Sipcalculator/constants";
-import { getLumpsumCalculation } from "./lumpsumservice";
-import { getSipCalculation } from "./sipservice";
+import { getPPFCalculation } from "./services/ppfservice";
 
-const SiplumpsumCalc = () => {
+const PPFCalc = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const { sliderValue, sliderWidth, handleInput, handleSlider, error } =
-    useSlider(SipData, activeTab);
+    useSlider(PPFData, activeTab);
 
   console.log(sliderValue, sliderWidth, handleInput);
 
-  const sipResult = activeTab
-    ? getLumpsumCalculation(sliderValue)
-    : getSipCalculation(sliderValue);
-  console.log(sipResult);
+  const result = getPPFCalculation(sliderValue);
+
   return (
     <>
       <Calculator
@@ -25,13 +22,13 @@ const SiplumpsumCalc = () => {
         handleInput={handleInput}
         error={error}
         handleSlider={handleSlider}
-        data={SipData.calType}
+        data={PPFData.calType}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        result={sipResult}
+        result={result}
       />
     </>
   );
 };
 
-export default SiplumpsumCalc;
+export default PPFCalc;
