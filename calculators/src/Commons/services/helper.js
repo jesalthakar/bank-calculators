@@ -20,3 +20,23 @@ export const calculateFutureYears = (period) => {
 
     return " " + currentMonthName + " " + futureYear
 }
+
+
+export const readCookie = (key) => {
+    const cookie = document.cookie;
+    const cookies = cookie.split(";");
+    let result = null;
+    cookies.forEach((eachcookie) => {
+        const [cookieKey, cookieValue] = eachcookie.split("=");
+        if (cookieKey.trim() === key) {
+            result = cookieValue;
+        }
+    })
+    return result;
+}
+
+export const deleteCookie = (name) => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC`
+
+
+}

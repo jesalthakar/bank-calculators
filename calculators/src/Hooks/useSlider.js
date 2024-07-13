@@ -7,6 +7,7 @@ const useSlider = (SipData, activeTab) => {
   const [error, setError] = useState({});
 
   useEffect(() => {
+
     console.log("Inside effect");
     const initialValues = {};
     const initialWidths = {};
@@ -51,7 +52,8 @@ const useSlider = (SipData, activeTab) => {
   const handleInput = (e, sliderType) => {
     console.log(e.target);
     const { value, max, min, step } = e.target;
-    let inputValue = value.trim().replace(/^0+/, "");
+    let inputValue = value.trim().replace(/^0+/, 0);
+
     let parsedValue = inputValue ? parseFloat(inputValue) : 0;
     console.log(parsedValue);
 

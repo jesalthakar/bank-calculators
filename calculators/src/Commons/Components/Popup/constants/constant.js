@@ -4,16 +4,32 @@ export const signUpPopupData = {
         "name": "username",
         "type": "text",
         "label": "username",
-
+        "validate": {
+            "required": "Username is required",
+            "minlength": "Username must be greater than 3",
+            "pattern": "USername should only contain alphanumeric"
+        }
     },
     {
         "name": "password",
         "type": "password",
-        "label": "password"
+        "label": "password",
+        "validate": {
+            "required": "Paasword is required",
+            "minlength": "Password must be greater than 6 characters",
+            "pattern": "Password should contain alphabets and special characters"
+        }
+
     }, {
-        "name": "confirmPassword",
+        "name": "confirmpassword",
         "type": "password",
-        "label": "Confirm Password"
+        "label": "Confirm Password",
+        "validate": {
+            "required": "",
+            "minlength": "",
+            "pattern": ""
+        }
+
     }],
     "buttontext": "SignUp"
 }
@@ -24,12 +40,18 @@ export const loginPopupData = {
     "input": [{
         "name": "username",
         "type": "text",
-        "label": "username"
+        "label": "username",
+        "validate": {
+            "required": "Username is required",
+        }
     },
     {
         "name": "password",
         "type": "password",
-        "label": "password"
+        "label": "password",
+        "validate": {
+            "required": "Paasword is required",
+        }
     }],
     "buttontext": "Login"
 }
