@@ -83,22 +83,18 @@
         .input-container {
             display: flex;
             align-items: center;
+            position: relative;
 
-            /*  .input-prefix {
+            .input-prefix {
                 position: absolute;
-                transform: translateY(-50%);
-                left: 24px;
-                top: 50%;
-                font-weight: bolder;
+                left: 29px;
             }
 
             .input-suffix {
                 position: absolute;
-                transform: translateY(-50%);
-                right: 72px;
-                top: 50%;
+                right: 47px;
                 font-weight: bolder;
-            } */
+            }
         }
 
 

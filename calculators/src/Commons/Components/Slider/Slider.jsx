@@ -38,7 +38,7 @@ const Slider = ({
                   max={sliderInfo.max}
                   step={sliderInfo.step}
                   disabled={sliderInfo.isDisabled ? "disabled" : ""}
-                  pattern="^-?\d+(?:\.\d+)?$"
+                  pattern="^\+?\d*\.?\d+$"
                   onChange={(e) => handleInput(e, sliderInfo.sliderType)}
                 ></input>
 

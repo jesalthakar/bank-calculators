@@ -1,3 +1,5 @@
+@import "../../../Commons/Styles/mediaQuery.scss";
+
 .popup-container {
     display: flex;
     justify-content: center;
@@ -10,6 +12,7 @@
     transform: translate(-50%, -50%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     width: 300px;
+    padding: 20px;
 
     .dsp-none {
         display: none;
@@ -29,78 +32,13 @@
         padding-top: 35px;
     }
 
-    form {
-        .popup-title {
-            margin-bottom: 42px;
-            font-size: 20px;
-            color: #026fd4;
-            font-size: 33px;
-            font-weight: 700;
-        }
-
-        .input-box {
-            position: relative;
-            margin-bottom: 40px;
-
-            label {
-                position: absolute;
-                bottom: 5px;
-                left: 0;
-                pointer-events: none;
-                font-size: 18px;
-                color: #AEAFB1;
-                font-weight: 300;
-
-
-            }
-
-            label.animate {
-                transition: transform 0.3s ease;
-                transform: translateY(-100%);
-                font-size: 12px;
-
-            }
-
-            input {
-                border: none;
-                outline: none;
-                padding: 0;
-                color: black;
-                border-bottom: 1px solid #AEAFB1;
-                width: 248px;
-                cursor: pointer;
-
-                &:focus {
-                    border-bottom: 1px solid #026fd4;
-                    transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-                    -webkit-transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-                    -ms-transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-                }
-
-                &:focus+label {
-                    transition: transform 0.3s ease;
-                    transform: translateY(-100%);
-                    font-size: 12px
-                }
-
-
-            }
-        }
-
-        .btn-wrapper {
-            display: flex;
-            justify-content: center;
-            padding-top: 10px;
-            padding-bottom: 10px;
-
-            .register-btn {
-                width: 165px;
-                border-radius: 5px;
-                color: #fff;
-                border: none;
-                background: linear-gradient(to right, #33a3ff, #0675cf, #4cd5ff);
-                padding: 10px;
-            }
-        }
+    .popup-title {
+        margin-bottom: 42px;
+        font-size: 20px;
+        color: #026fd4;
+        font-size: 33px;
+        font-weight: 700;
     }
+
+
 }

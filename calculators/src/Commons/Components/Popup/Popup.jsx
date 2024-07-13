@@ -1,10 +1,13 @@
 import React from "react";
 import { useState } from "react";
 
-import AuthInput from "../AuthInput/AuthInput";
+import CustomForm from "../CustomForm/CustomForm.jsx";
 
-const Popup = ({ popupData, onClose }, isClose) => {
-  console.log(popupData);
+const Popup = (
+  { popupData, onClose, isSignupPopup, setIsSignupPopup, isLoginPopup, setIsLoginPopup },
+  isClose
+) => {
+  console.log(popupData, isSignupPopup);
 
   return (
     <>
@@ -13,21 +16,16 @@ const Popup = ({ popupData, onClose }, isClose) => {
           X
         </div>
         <div className="popup-content">
-          <form>
-            <>
-              <div className="popup-title">{popupData.title}</div>
-              {popupData.input.map((eachInput) => {
-                return (
-                  <>
-                    <AuthInput inputData={eachInput} />
-                  </>
-                );
-              })}
-            </>
-            <div className="btn-wrapper">
-              <button className="register-btn">{popupData.buttontext}</button>
-            </div>
-          </form>
+          <div className="popup-title">{popupData.title}</div>
+          <CustomForm
+            popupData={popupData}
+            isSignupPopup={isSignupPopup}
+            isClose={isClose}
+            onClose={onClose}
+            setIsSignupPopup={setIsSignupPopup}
+            isLoginPopup={isLoginPopup}
+            setIsLoginPopup={setIsLoginPopup}
+          />
         </div>
       </div>
     </>
