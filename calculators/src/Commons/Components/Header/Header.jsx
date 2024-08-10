@@ -11,6 +11,8 @@ import { ApiContext } from "../../../Context/ApiContext";
 import { deleteCookie, readCookie } from "../../services/helper";
 import axios from "axios";
 import callApi from "../../services/api";
+const baseurl = process.env.REACT_APP_API_BASE_URL;
+
 
 const Header = () => {
   const { setUserLoggedIn, userLoggedIn } = useContext(ApiContext);
