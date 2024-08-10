@@ -11,6 +11,8 @@ import { ApiContext } from "../../../Context/ApiContext";
 import { deleteCookie, readCookie } from "../../services/helper";
 import axios from "axios";
 import callApi from "../../services/api";
+const baseurl = process.env.REACT_APP_API_BASE_URL;
+
 
 const Header = () => {
   const { setUserLoggedIn, userLoggedIn } = useContext(ApiContext);
@@ -30,7 +32,7 @@ const Header = () => {
     const data = { token };
     const response = await callApi({
       method: "POST",
-      url: "http://localhost:5000/validate",
+      url: `${baseurl}/validate`,
       data: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
       withCredentials: "true"
@@ -63,7 +65,7 @@ const Header = () => {
 
     const response = await callApi({
       method: "GET",
-      url: "http://localhost:5000/logout",
+      url: `${baseurl}/logout`,
       headers: { "Content-Type": "application/json" },
       withCredentials: "true"
     })

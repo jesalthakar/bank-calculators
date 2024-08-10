@@ -3,7 +3,7 @@ import "../CustomForm/CustomForm.scss";
 import callApi from "../../services/api.js";
 import { ApiContext } from "../../../Context/ApiContext";
 const baseurl = process.env.REACT_APP_API_BASE_URL;
-console.log(baseurl);
+
 
 const CustomForm = ({ popupData, isSignupPopup, setIsSignupPopup, isLoginPopup, setIsLoginPopup }) => {
   const { apiData, setApiData, setUserLoggedIn } = useContext(ApiContext);
