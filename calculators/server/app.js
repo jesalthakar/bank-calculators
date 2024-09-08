@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000', // Replace with your frontend domain/port
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Replace with your frontend domain/port
     credentials: true // Allow cookies to be sent with requests
 }));
 
