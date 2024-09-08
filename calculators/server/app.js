@@ -40,16 +40,18 @@ app.use((req, res, next) => {
 // For example:
 
 
-
+app.listen(process.env.PORT || 5000)
 
 //dataBase Connection
 
 
-const uri = process.env.MONGODB_URI;
+
+
+/* const uri = process.env.MONGODB_URI;
 console.log(uri);
 mongoose.connect(uri)
     .then((result) => app.listen(5000))
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err)) */
 
 //routes
 app.use(authroutes)
