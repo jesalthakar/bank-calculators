@@ -1,16 +1,17 @@
-require("dotenv").config();
 const mongoose = require('mongoose');
 const express = require('express');
 const authroutes = require('./routes/authroutes.js');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+require("dotenv").config();
+
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: 'http://localhost:3000', // Replace with your frontend domain/port
+    origin: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000', // Replace with your frontend domain/port
     credentials: true // Allow cookies to be sent with requests
 }));
 
