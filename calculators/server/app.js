@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const authroutes = require('./routes/authroutes.js');
+const fileroutes = require("./routes/fileroutes.js")
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 require("dotenv").config();
@@ -47,12 +48,16 @@ app.use(cors({
 
 
 
-const uri = "mongodb://localhost:27017/MyDataBase"
+const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/MyDataBase"
 console.log(uri);
 mongoose.connect(uri)
-    .then((result) => app.listen(5000))
+    .then((result) => {
+        app.listen(process.env.PORT || 5000)
+
+    })
     .catch((err) => console.log(err))
 //routes
 app.use(authroutes)
+app.use(fileroutes)
 
 

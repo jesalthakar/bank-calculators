@@ -6,6 +6,7 @@ import { getLumpsumCalculation } from "./lumpsumservice";
 import { getSipCalculation } from "./sipservice";
 
 const SiplumpsumCalc = () => {
+
   const [activeTab, setActiveTab] = useState(0);
 
   const { sliderValue, sliderWidth, handleInput, handleSlider, error } =
