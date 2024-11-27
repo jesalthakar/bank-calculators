@@ -56,6 +56,7 @@
         border: 1px solid rgba(0, 0, 0, .2);
         border-radius: 8px;
         padding-left: 10px;
+        overflow: hidden;
 
         input {
             border: none;
@@ -148,7 +149,7 @@
         -webkit-appearance: none;
         cursor: ew-resize;
         background-color: #ffffff;
-        box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+        box-shadow: -5px 3px 5px 0px rgba(0, 0, 0, 0.38);
 
     }
 }
