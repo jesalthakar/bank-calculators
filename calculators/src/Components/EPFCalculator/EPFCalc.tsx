@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import useSlider from "../../Hooks/useSlider";
 import { getEPFCalculation } from "./services/epfservice";
-import { EPFData } from "./constants/epfoconstant";
+//import { EPFData } from "./constants/epfoconstant";
 
 const EPFCalc = () => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const { sliderValue, sliderWidth, handleInput, handleSlider, error } =
-    useSlider(EPFData, activeTab);
+  /* const { sliderValue, sliderWidth, handleInput, handleSlider, error } =
+    useSlider(EPFData??{}, activeTab); */
 
-  console.log(sliderValue, sliderWidth, handleInput);
+  // console.log(sliderValue, sliderWidth, handleInput);
 
-  const result = getEPFCalculation(sliderValue);
+  // const result = getEPFCalculation(sliderValue);
 
   return (
     <>

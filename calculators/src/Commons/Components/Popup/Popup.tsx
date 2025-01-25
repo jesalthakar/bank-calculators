@@ -5,11 +5,11 @@ import { popupPropType } from "./types";
 
 
 
- 
-const Popup:React.FC<popupPropType>= (
-  { popupData, onClose, isSignupPopup, setIsSignupPopup, isLoginPopup, setIsLoginPopup },
+
+const Popup: React.FC<popupPropType> = (
+  { popupData, onClose, isSignupPopup, setIsSignupPopup, isLoginPopup, setIsLoginPopup, isManager, setIsManager, isCreatingAdmin, setIsCreatingAdmin },
   popupState
-) => { 
+) => {
   console.log(popupData, isSignupPopup);
 
   return (
@@ -28,6 +28,10 @@ const Popup:React.FC<popupPropType>= (
             setIsSignupPopup={setIsSignupPopup}
             isLoginPopup={isLoginPopup}
             setIsLoginPopup={setIsLoginPopup}
+            isManager={isManager}
+            setIsManager={setIsManager}
+            isCreatingAdmin={isCreatingAdmin}
+            setIsCreatingAdmin={setIsCreatingAdmin}
           />
         </div>
       </div>

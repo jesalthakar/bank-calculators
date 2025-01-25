@@ -6,7 +6,7 @@ import HomeLoanCalc from '../HomeLoanCalc';
 const HomeLoancalcroute = () => {
     const Routes = [
         {
-            path: '/homeLoan-calculator',
+            path: '/home-calculator',
             element: <HomeLoanCalc />
         }
     ]

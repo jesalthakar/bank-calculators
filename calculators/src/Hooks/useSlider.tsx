@@ -2,36 +2,38 @@ import React, { useEffect, useState } from "react";
 import { initialValuesTypes } from "./types";
 import { sipdataType } from "../Components/Sipcalculator/types";
 
-const useSlider = (SipData:sipdataType, activeTab:number) => {
-  const [sliderValue, setSliderValue] = useState<{[key:string]:number}>({});
-  const [sliderWidth, setSliderWidth] = useState<{[key:string]:number}>({});
+const useSlider = (SipData: sipdataType, activeTab: number) => {
+  const [sliderValue, setSliderValue] = useState<{ [key: string]: number }>({});
+  const [sliderWidth, setSliderWidth] = useState<{ [key: string]: number }>({});
 
-  const [error, setError] = useState<{[key:string]:boolean}>({});
+  const [error, setError] = useState<{ [key: string]: boolean }>({});
 
-  
+
 
   useEffect(() => {
-
+    if (!SipData || !SipData.calType || !SipData.calType[activeTab]) {
+      return;
+    }
     console.log("Inside effect");
-    const initialValues:initialValuesTypes = {};
-    const initialWidths:initialValuesTypes = {};
+    const initialValues: initialValuesTypes = {};
+    const initialWidths: initialValuesTypes = {};
 
 
     SipData.calType[activeTab].rangeinfo.forEach((eachSliderInfo) => {
       console.log(eachSliderInfo);
-      console.log("max" + eachSliderInfo.max, "min" + eachSliderInfo.min);
+      console.log("max" + eachSliderInfo.maximum, "min" + eachSliderInfo.minimum);
       initialValues[eachSliderInfo.sliderType] = eachSliderInfo.defaultvalue;
       initialWidths[eachSliderInfo.sliderType] =
-        ((Number(eachSliderInfo.defaultvalue) - Number(eachSliderInfo.min)) *
+        ((Number(eachSliderInfo.defaultvalue) - Number(eachSliderInfo.minimum)) *
           100) /
-        (Number(eachSliderInfo.max) - Number(eachSliderInfo.min));
+        (Number(eachSliderInfo.maximum) - Number(eachSliderInfo.minimum));
     });
 
     setSliderValue(initialValues);
     setSliderWidth(initialWidths);
-  }, [activeTab]);
+  }, [SipData, activeTab]);
 
-  const handleSlider = (e:React.ChangeEvent<HTMLInputElement>, sliderType:string):void => {
+  const handleSlider = (e: React.ChangeEvent<HTMLInputElement>, sliderType: string): void => {
     const { value, max, min } = e.target;
     console.log(sliderType);
     console.log(e.target.value);
@@ -54,7 +56,7 @@ const useSlider = (SipData:sipdataType, activeTab:number) => {
     }));
   };
 
-  const handleInput = (e:React.ChangeEvent<HTMLInputElement>, sliderType:string):void => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>, sliderType: string): void => {
     console.log(e.target);
     const { value, max, min, step } = e.target;
     const zero = 0;

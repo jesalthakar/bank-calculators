@@ -8,6 +8,8 @@ import PPFCalculatorRoute from "../../../Components/PPFCalculator/Routes/PPFCalc
 import EpfoCalculatorRoute from "../../../Components/EPFCalculator/Routes/epfoCalculatorRoute";
 import FDcalcroute from "../../../Components/FDCalculator/Routes/fdCalculatorRoutes";
 import RDcalcroute from "../../../Components/RDCalculator/Routes/rdCalculatorRoutes";
+import ExecDashboardRoute from "../../../Dashboard/Components/ExcelDashBoard/Routes/ExecDashboardRoute";
+import ManagerDashboardRoute from "../../../Dashboard/Components/ManagerDashboard/Routes/ManagerDashboardRoute";
 
 const Container = () => {
   return (
@@ -20,6 +22,8 @@ const Container = () => {
         <EpfoCalculatorRoute />
         <FDcalcroute />
         <RDcalcroute />
+        <ExecDashboardRoute />
+        <ManagerDashboardRoute />
       </div>
     </>
   );

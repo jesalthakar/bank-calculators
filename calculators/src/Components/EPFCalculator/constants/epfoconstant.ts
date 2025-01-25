@@ -1,14 +1,14 @@
 import { sipdataType } from "../../Sipcalculator/types"
 
-export const EPFData:sipdataType = {
+/* export const EPFData: sipdataType = {
     "calType": [{
         "calText": "EPF",
         "rangeinfo": [{
             "sliderType": "amt",
             "rangetitle": "Monthly Salary(Basic+DA)",
             "rangedesc": "Minimum 10,000",
-            "min": 1000,
-            "max": 100000,
+            "minimum": 1000,
+            "maximum": 100000,
             "step": 10000,
             "defaultvalue": 30000,
             "isDisabled": false
@@ -18,8 +18,8 @@ export const EPFData:sipdataType = {
             "sliderType": "age",
             "rangetitle": "Your Age",
             "rangedesc": "",
-            "min": 1,
-            "max": 100,
+            "minimum": 1,
+            "maximum": 100,
             "step": 1,
             "defaultvalue": 52,
             "isDisabled": false
@@ -29,8 +29,8 @@ export const EPFData:sipdataType = {
             "sliderType": "eepfr",
             "rangetitle": "Your contribution to EPF",
             "rangedesc": "",
-            "min": 1,
-            "max": 100,
+            "minimum": 1,
+            "maximum": 100,
             "step": 1,
             "defaultvalue": 12,
             "isDisabled": false
@@ -40,8 +40,8 @@ export const EPFData:sipdataType = {
             "sliderType": "salaryincr",
             "rangetitle": "Annual increase in salary",
             "rangedesc": "",
-            "min": 0,
-            "max": 100,
+            "minimum": 0,
+            "maximum": 100,
             "step": 1,
             "defaultvalue": 10,
             "isDisabled": false
@@ -51,8 +51,8 @@ export const EPFData:sipdataType = {
             "sliderType": "roi",
             "rangetitle": "Rate of Interest",
             "rangedesc": "",
-            "min": 1,
-            "max": 100,
+            "minimum": 1,
+            "maximum": 100,
             "step": 0.1,
             "defaultvalue": 8.15,
             "isDisabled": true
@@ -63,6 +63,6 @@ export const EPFData:sipdataType = {
     }
     ],
 
-}
+} */
 
 

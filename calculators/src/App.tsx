@@ -14,12 +14,12 @@ function App() {
   return (
     <>
       <ApiProvider>
-        <Header />
         <Router>
+          <Header />
           <CardsContainer />
           <Container />
         </Router>
-      </ApiProvider>
+      </ApiProvider >
     </>
   );
 }

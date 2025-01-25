@@ -17,6 +17,12 @@ const userSchema = new mongoose.Schema({
         minlength: [6, "Minimum password length is 6 characters"],
         maxlength: [20, "Maximum password length is 20 characters"],
     },
+    role: {
+        type: String,
+        enum: ["manager", "admin", "user"],
+        default: "user"
+    }
+
 })
 
 userSchema.post("save", (doc, next) => {

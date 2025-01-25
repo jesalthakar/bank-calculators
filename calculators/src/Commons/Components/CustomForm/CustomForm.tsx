@@ -3,31 +3,34 @@ import "../CustomForm/CustomForm.scss";
 import callApi from "../../services/api";
 import { ApiContext } from "../../../Context/ApiContext";
 import { popupPropType } from "../Popup/types";
+import { useDispatch } from "react-redux";
 const baseurl = process.env.REACT_APP_API_BASE_URL;
 
 
-const CustomForm:React.FC<popupPropType> = ({ popupData, isSignupPopup, setIsSignupPopup, isLoginPopup, setIsLoginPopup }) => {
+const CustomForm: React.FC<popupPropType> = ({ popupData, isSignupPopup, setIsSignupPopup, isLoginPopup, setIsLoginPopup, isManager, setIsManager, isCreatingAdmin, setIsCreatingAdmin }) => {
   const context = useContext(ApiContext);
-  
+  const dispatch = useDispatch();
+
+
   if (!context) {
     throw new Error('ApiContext must be used within ApiProvider');
   }
   const { apiData, setApiData, setUserLoggedIn } = context
   console.log(isSignupPopup);
 
-  const [inputValue, setInputValue] = useState<{[key:string]:string}>({
+  const [inputValue, setInputValue] = useState<{ [key: string]: string }>({
     username: "",
     password: "",
     confirmpassword: "",
   });
 
-  const [error, setError] = useState<{[key:string]:string}>(isSignupPopup ?
+  const [error, setError] = useState<{ [key: string]: string }>(isSignupPopup ?
     { username: "", password: "", confirmpassword: "" } :
     { username: "", password: "", }
   );
   const errors = { ...error };
 
-  const inputHandler = (e:React.ChangeEvent<HTMLInputElement>):void => {
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     console.log(e.target.name, { [e.target.name]: e.target.value });
     console.log(inputValue);
     console.log(error);
@@ -39,26 +42,26 @@ const CustomForm:React.FC<popupPropType> = ({ popupData, isSignupPopup, setIsSig
       password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,20}$/,
     };
 
-    const inputValidator = (name:string, value:string) => {
+    const inputValidator = (name: string, value: string) => {
       switch (name) {
         case "username":
           if (!value) {
-            errors[name] =  field?.validate.required??"";
+            errors[name] = field?.validate.required ?? "";
           } else if (isSignupPopup && value.length < 3) {
-            errors[name] = field?.validate.minlength??"";
+            errors[name] = field?.validate.minlength ?? "";
           } else if (isSignupPopup && !patterns.alphanumeric.test(value)) {
-            errors[name] = field?.validate.pattern??"";
+            errors[name] = field?.validate.pattern ?? "";
           } else {
             delete errors[name];
           }
           break;
         case "password":
           if (!value) {
-            errors[name] = field?.validate.required??"";
+            errors[name] = field?.validate.required ?? "";
           } else if (isSignupPopup && value.length < 6) {
-            errors[name] = field?.validate.minlength??"";
+            errors[name] = field?.validate.minlength ?? "";
           } else if (isSignupPopup && !patterns.password.test(value)) {
-            errors[name] = field?.validate.pattern??"";
+            errors[name] = field?.validate.pattern ?? "";
           } else {
             delete errors[name];
           }
@@ -84,7 +87,7 @@ const CustomForm:React.FC<popupPropType> = ({ popupData, isSignupPopup, setIsSig
   };
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = inputValue;
     if (!isSignupPopup) {
       const response = await callApi({
@@ -94,32 +97,37 @@ const CustomForm:React.FC<popupPropType> = ({ popupData, isSignupPopup, setIsSig
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
-      if (response?.success) {
-        
+      if (response?.data?.success) {
         setIsLoginPopup && setIsLoginPopup(false);
         setUserLoggedIn(true);
-
+        dispatch({ type: "INITIALS", payload: { initialName: response.data.initials } })
+        if (response?.data?.role === "manager") {
+          setIsManager?.(true);
+          window.location.href = "/manager";
+        } else if (response?.data?.role === "admin") {
+          window.location.href = "/admin";
+        }
       } else {
         setError({ ...error, password: response?.message })
-
-
       }
     } else {
+      const url = isCreatingAdmin ? `${baseurl}/createadmin` : `${baseurl}/signup`
       const response = await callApi({
         method: "POST",
-        url: `${baseurl}/signup`,
+        url,
         data: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      if (response?.success) {
+      if (response?.data?.success) {
         setIsSignupPopup && setIsSignupPopup(false);
         setUserLoggedIn(true);
+        dispatch({ type: "INITIALS", payload: { initialName: response.data.initials } })
+
       } else {
         setError({ ...error, username: response?.message?.username });
       }
     }
-
   };
 
   return (
@@ -154,7 +162,7 @@ const CustomForm:React.FC<popupPropType> = ({ popupData, isSignupPopup, setIsSig
         })}
         <div className="btn-wrapper">
           <button
-            disabled={Object.keys(errors).length > 0 }
+            disabled={Object.keys(errors).length > 0}
             type="submit"
             className={`register-btn ${Object.keys(errors).length ? "disabled" : ""
               }`}
