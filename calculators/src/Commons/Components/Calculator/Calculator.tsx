@@ -10,7 +10,8 @@ import { CalculatorComponentTypes } from "./types";
 
 
 
-const Calculator:React.FC<CalculatorComponentTypes> = ({
+
+const Calculator: React.FC<CalculatorComponentTypes> = ({
   sliderValue,
   sliderWidth,
   handleInput,
@@ -20,8 +21,9 @@ const Calculator:React.FC<CalculatorComponentTypes> = ({
   activeTab,
   setActiveTab,
   result,
+  isLoading
 }) => {
-  const handleTabClick = (index:number) => {
+  const handleTabClick = (index: number) => {
     setActiveTab(index);
   };
 
@@ -55,7 +57,7 @@ const Calculator:React.FC<CalculatorComponentTypes> = ({
         </div>
       </div>
 
-      <div className="right-section">
+      {<div className="right-section">
         <div className="sticky-section-mob">
           <div className="primary-container">
             <div className="primary-info-container">
@@ -93,7 +95,7 @@ const Calculator:React.FC<CalculatorComponentTypes> = ({
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </>
   );
 };

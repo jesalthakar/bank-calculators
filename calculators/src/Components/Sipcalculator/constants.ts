@@ -1,6 +1,6 @@
 import { sipdataType } from "./types";
 
-export const SipData: sipdataType = {
+/* export const SipData: sipdataType = {
     "calType": [
         {
             "calText": "SIP",
@@ -9,8 +9,8 @@ export const SipData: sipdataType = {
                     "sliderType": "amt",
                     "rangetitle": "Loan Amount",
                     "rangedesc": "Minimum 10,000",
-                    "min": 10000,
-                    "max": 100000,
+                    "minimum": 10000,
+                    "maximum": 100000,
                     "step": 10000,
                     "defaultvalue": 10000,
                     "prefix": "Rs",
@@ -20,8 +20,8 @@ export const SipData: sipdataType = {
                     "sliderType": "roi",
                     "rangedesc": "Minimum 8.7%",
                     "rangetitle": "Interest Rate",
-                    "min": 1,
-                    "max": 100,
+                    "minimum": 1,
+                    "maximum": 100,
                     "step": 0.1,
                     "defaultvalue": 10,
                     "prefix": "",
@@ -31,8 +31,8 @@ export const SipData: sipdataType = {
                     "sliderType": "period",
                     "rangetitle": "Tenure",
                     "rangedesc": "Till ",
-                    "min": 1,
-                    "max": 250,
+                    "minimum": 1,
+                    "maximum": 250,
                     "step": 1,
                     "defaultvalue": 1,
                     "prefix": "",
@@ -47,8 +47,8 @@ export const SipData: sipdataType = {
                     "sliderType": "amt",
                     "rangetitle": "Loan Amount",
                     "rangedesc": "Minimum 10,000",
-                    "min": 1000,
-                    "max": 100000,
+                    "minimum": 1000,
+                    "maximum": 100000,
                     "step": 100,
                     "defaultvalue": 50000
                 },
@@ -56,8 +56,8 @@ export const SipData: sipdataType = {
                     "sliderType": "roi",
                     "rangedesc": "Minimum 8.7%",
                     "rangetitle": "Interest Rate",
-                    "min": 1,
-                    "max": 100,
+                    "minimum": 1,
+                    "maximum": 100,
                     "step": 0.1,
                     "defaultvalue": 15
 
@@ -66,8 +66,8 @@ export const SipData: sipdataType = {
                     "sliderType": "period",
                     "rangetitle": "Tenure",
                     "rangedesc": "Till ",
-                    "min": 1,
-                    "max": 250,
+                    "minimum": 1,
+                    "maximum": 250,
                     "step": 1,
                     "defaultvalue": 10
 
@@ -75,6 +75,6 @@ export const SipData: sipdataType = {
         }
     ],
 
-}
+} */
 
 

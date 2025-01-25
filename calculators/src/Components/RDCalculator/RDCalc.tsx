@@ -17,7 +17,7 @@ const RDCalc = () => {
   console.log(result);
   return (
     <>
-      <Calculator
+      {/* <Calculator
         sliderValue={sliderValue}
         sliderWidth={sliderWidth}
         handleInput={handleInput}
@@ -27,7 +27,7 @@ const RDCalc = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         result={result}
-      />
+      /> */}
     </>
   );
 };

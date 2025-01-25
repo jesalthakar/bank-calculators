@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { calculateFutureYears } from "../../services/helper";
 import { sliderPropTypes } from "./types";
 
-const Slider:React.FC<sliderPropTypes> = ({
+const Slider: React.FC<sliderPropTypes> = ({
   sliderInfo,
   sliderValue,
   sliderWidth,
@@ -16,27 +16,26 @@ const Slider:React.FC<sliderPropTypes> = ({
       <div className="range-slider-container">
         <div className="range-info-div">
           <div className="left-info-div">
-            <div className="range-title">{sliderInfo.rangetitle}</div>
+            <div className="range-title">{sliderInfo.title}</div>
             <div className="range-desc">
               {sliderInfo.sliderType === "period"
-                ? sliderInfo.rangedesc +
-                  calculateFutureYears(sliderValue[sliderInfo.sliderType])
-                : sliderInfo.rangedesc}
+                ? sliderInfo.desc +
+                calculateFutureYears(sliderValue[sliderInfo.sliderType])
+                : sliderInfo.desc}
             </div>
           </div>
           <div className="right-info-div">
             <div
-              className={`range-input-div ${
-                error[sliderInfo.sliderType] ? "error" : ""
-              }`}
+              className={`range-input-div ${error[sliderInfo.sliderType] ? "error" : ""
+                }`}
             >
               <div className="input-container">
                 <span className="input-prefix">{sliderInfo.prefix}</span>
                 <input
                   type="text"
                   value={sliderValue[sliderInfo.sliderType]}
-                  min={sliderInfo.min}
-                  max={sliderInfo.max}
+                  min={sliderInfo.minimum}
+                  max={sliderInfo.maximum}
                   step={sliderInfo.step}
                   disabled={sliderInfo.isDisabled}
                   pattern="^\+?\d*\.?\d+$"
@@ -49,9 +48,8 @@ const Slider:React.FC<sliderPropTypes> = ({
           </div>
         </div>
         <div
-          className={`filler-container ${
-            sliderInfo.isDisabled ? "dsp-none" : ""
-          }`}
+          className={`filler-container ${sliderInfo.isDisabled ? "dsp-none" : ""
+            }`}
         >
           <div className="filler-div"></div>
           <span
@@ -61,8 +59,8 @@ const Slider:React.FC<sliderPropTypes> = ({
           <input
             type="range"
             className="range-slider-input"
-            min={sliderInfo.min}
-            max={sliderInfo.max}
+            min={sliderInfo.minimum}
+            max={sliderInfo.maximum}
             step={sliderInfo.step}
             value={sliderValue[sliderInfo.sliderType]}
             onChange={(e) => handleSlider(e, sliderInfo.sliderType)}

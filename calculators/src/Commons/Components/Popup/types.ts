@@ -1,7 +1,7 @@
 export interface PopupDataPropType {
     title: string;
     input: inputType[];
-    buttontext:string; 
+    buttontext: string;
 }
 
 export interface inputType {
@@ -19,11 +19,15 @@ export interface validateType {
 }
 
 export interface popupPropType {
-    popupData:PopupDataPropType;
-    onClose: ()=>void
-    isSignupPopup?:boolean;
-    setIsSignupPopup?:React.Dispatch<React.SetStateAction<boolean>>;
+    popupData: PopupDataPropType;
+    onClose: () => void
+    isSignupPopup?: boolean;
+    setIsSignupPopup?: React.Dispatch<React.SetStateAction<boolean>>;
     isLoginPopup?: boolean;
-    setIsLoginPopup?:React.Dispatch<React.SetStateAction<boolean>>;
-    popupState?:boolean
-  }
+    setIsLoginPopup?: React.Dispatch<React.SetStateAction<boolean>>;
+    popupState?: boolean
+    isManager?: boolean
+    setIsManager?: React.Dispatch<React.SetStateAction<boolean>>;
+    isCreatingAdmin?: boolean;
+    setIsCreatingAdmin?: React.Dispatch<React.SetStateAction<boolean>>;
+}

@@ -16,7 +16,7 @@ const PPFCalc = () => {
 
   return (
     <>
-      <Calculator
+      {/* <Calculator
         sliderValue={sliderValue}
         sliderWidth={sliderWidth}
         handleInput={handleInput}
@@ -26,7 +26,7 @@ const PPFCalc = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         result={result}
-      />
+      /> */}
     </>
   );
 };

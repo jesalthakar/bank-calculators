@@ -42,6 +42,10 @@
     .calculator-inputs-container {
         margin-top: 10px;
         padding-right: 20px;
+
+        @include mobile {
+            padding-right: unset;
+        }
     }
 
 

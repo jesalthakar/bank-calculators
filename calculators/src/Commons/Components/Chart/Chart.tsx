@@ -1,12 +1,12 @@
 import React from "react";
 import "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
-import { ChartOptions,ChartData } from 'chart.js';
+import { ChartOptions, ChartData } from 'chart.js';
 import { chartPropTypes } from "./types";
 
-const Chart:React.FC<chartPropTypes> = ({ amount, growth }) => {
+const Chart: React.FC<chartPropTypes> = ({ amount, growth }) => {
   console.log({ amount, growth });
-  const data:ChartData<'doughnut'> = {
+  const data: ChartData<'doughnut'> = {
     datasets: [
       {
         data: [amount, growth],
@@ -17,7 +17,7 @@ const Chart:React.FC<chartPropTypes> = ({ amount, growth }) => {
     ],
   };
 
-  const options:ChartOptions<'doughnut'> = {
+  const options: ChartOptions<'doughnut'> = {
     cutout: '50%',
     elements: {
       arc: {

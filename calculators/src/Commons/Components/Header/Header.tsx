@@ -11,24 +11,30 @@ import { ApiContext } from "../../../Context/ApiContext";
 //import { ApiProviderPropsTypes } from "../../../Context/types";
 
 import { deleteCookie, readCookie } from "../../services/helper";
-import axios from "axios";
 import callApi from "../../services/api";
+import { useLocation } from "react-router-dom";
+import Avatar from "../Avatar/Avatar";
+import { useDispatch } from "react-redux";
+import { INITIALS } from "../../../ActionTypes";
 const baseurl = process.env.REACT_APP_API_BASE_URL;
 
 const Header = () => {
-
-
-  const context = useContext(ApiContext); 
+  const dispatch = useDispatch()
+  const location = useLocation();
+  const context = useContext(ApiContext);
   const [isSignupPopup, setIsSignupPopup] = useState<boolean>(false);
   const [isLoginPopup, setIsLoginPopup] = useState<boolean>(false);
   const [isClose, setIsClose] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  
+  const [isCreatingAdmin, setIsCreatingAdmin] = useState(false);
+
   if (!context) {
     throw new Error('ApiContext must be used within ApiProvider');
   }
-  const { setUserLoggedIn, userLoggedIn } = context
-  
+  const { setUserLoggedIn, userLoggedIn, isManager, setIsManager } = context;
+
+  const createUserElement = location.pathname === "/manager";
+
   useEffect(() => {
     const getCookie = readCookie("jwt");
     console.log(getCookie);
@@ -36,7 +42,7 @@ const Header = () => {
     authValidate(getCookie);
   }, []);
 
-  const authValidate = async (token:string | null) => {
+  const authValidate = async (token: string | null) => {
     const data = { token };
     const response = await callApi({
       method: "POST",
@@ -45,9 +51,10 @@ const Header = () => {
       headers: { "Content-Type": "application/json" },
       withCredentials: true
     });
-    if (response?.message === "Valid Token") {
+    if (response?.data?.message === "Valid Token") {
       setUserLoggedIn(true)
       setIsLoading(false)
+      dispatch({ type: INITIALS, payload: { initialName: response?.data?.initials } })
     } else {
       setIsLoading(false)
       setUserLoggedIn(false); // Handle invalid token case
@@ -55,16 +62,20 @@ const Header = () => {
 
   }
 
-
   const handleSignUp = () => {
     setIsSignupPopup(true);
   };
+
+  const handleCreateAdmin = () => {
+    setIsCreatingAdmin(true);
+    setIsSignupPopup(true);
+  }
 
   const handleLogIn = () => {
     setIsLoginPopup(true);
   };
 
-  const handleClosePopup:() => void = () => {
+  const handleClosePopup: () => void = () => {
     setIsSignupPopup(false);
     setIsLoginPopup(false);
   };
@@ -77,12 +88,10 @@ const Header = () => {
       headers: { "Content-Type": "application/json" },
       withCredentials: true
     })
-    if (response?.success) {
+    if (response?.data?.success) {
       deleteCookie("jwt");
       setUserLoggedIn(false);
     }
-
-
   }
 
   if (isLoading) {
@@ -105,7 +114,12 @@ const Header = () => {
                 Login
               </span>
             </>) :
-            (<span className="login`" onClick={handleLogOut}>Logged In</span>)}
+            (
+              <>
+                {createUserElement ? <span onClick={handleCreateAdmin}>Create admin</span> : ""}
+                <Avatar />
+              </>
+            )}
         </div>
       </div>
       {(isSignupPopup || isLoginPopup) && <Overlay />}
@@ -116,6 +130,11 @@ const Header = () => {
           popupData={signUpPopupData}
           popupState={isClose}
           onClose={handleClosePopup}
+          isManager={isManager}
+          setIsManager={setIsManager}
+          isCreatingAdmin={isCreatingAdmin}
+          setIsCreatingAdmin={setIsCreatingAdmin}
+
         />
       )}
       {isLoginPopup && (

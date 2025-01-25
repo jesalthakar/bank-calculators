@@ -1,5 +1,7 @@
 const User = require("../models/User");
-const jwt = require("jsonwebtoken");
+const { createToken, maxAgeLimit, verifyToken } = require("../utils/jwtUtils");
+
+
 
 const errorHandler = (error) => {
     console.log(error.message, error.code);
@@ -24,8 +26,7 @@ module.exports.signup_post = async (req, res) => {
         const user = await User.create({ username, password, confirmpassword })
         const token = createToken(user._id);
         res.cookie('jwt', token, { maxAge: maxAgeLimit * 1000 })
-        res.status(200).json({ success: true, id: user._id })
-
+        res.status(200).json({ success: true, id: user._id, initials: username.substring(0, 2).toUpperCase() })
     } catch (error) {
         const errormsg = errorHandler(error)
         res.status(400).json({ message: errormsg })
@@ -40,10 +41,13 @@ module.exports.validate = async (req, res) => {
             return res.status(200).json({ message: "Token is required" })
         }
         const user = verifyToken(token);
+        console.log(user)
+        const userDetails = await User.findById(user.id);
+        console.log(userDetails)
         if (!user) {
             return res.status(401).json({ message: "Invalid Token or expired Token" })
         }
-        res.status(200).json({ message: "Valid Token" })
+        res.status(200).json({ message: "Valid Token", initials: userDetails.username.substr(0, 2).toUpperCase() })
 
 
     } catch (error) {
@@ -61,7 +65,7 @@ module.exports.login = async (req, res) => {
 
         const token = createToken(user._id);
         res.cookie('jwt', token, { maxAge: maxAgeLimit * 1000 })
-        return res.status(200).json({ success: true, id: user._id, message: "Login Successful" });
+        return res.status(200).json({ success: true, id: user._id, message: "Login Successful", initials: user.username.substr(0, 2).toUpperCase(), role: user.role });
 
     } catch (error) {
         console.error(error);
@@ -74,18 +78,4 @@ module.exports.logout = async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: "Api failed" })
     }
-}
-
-const maxAgeLimit = 3 * 24 * 60 * 60;
-const createToken = (id) => {
-    return jwt.sign({ id }, 'authtoken', {
-        expiresIn: maxAgeLimit
-    })
-
-}
-
-const verifyToken = (token) => {
-    return jwt.verify(token, 'authtoken');
-
-
 }
