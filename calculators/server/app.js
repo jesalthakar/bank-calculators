@@ -38,10 +38,10 @@ app.use((req, res, next) => {
 
 
 const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/MyDataBase"
-console.log(uri);
 mongoose.connect(uri)
     .then((result) => {
         app.listen(process.env.PORT || 5000)
+        console.log(uri);
 
     })
     .catch((err) => console.log(err))
