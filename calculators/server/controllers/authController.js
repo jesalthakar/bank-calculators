@@ -64,7 +64,11 @@ module.exports.login = async (req, res) => {
         }
 
         const token = createToken(user._id);
-        res.cookie('jwt', token, { sameSite: "None", maxAge: maxAgeLimit * 1000 })
+        res.cookie('jwt', token, {
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "None",
+            maxAge: maxAgeLimit * 1000
+        })
         return res.status(200).json({ success: true, id: user._id, message: "Login Successful", initials: user.username.substr(0, 2).toUpperCase(), role: user.role });
 
     } catch (error) {
