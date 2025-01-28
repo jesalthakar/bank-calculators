@@ -57,6 +57,7 @@ app.use("/manager", requireRole(["manager", "admin"]), (req, res) => {
 
 app.get("/bank-calculator/read-cookie", (req, res) => {
     const token = req.cookies.jwt;
+    console.log(token)
     if (token) {
         res.status(200).json({ token })
     } else {

@@ -36,10 +36,14 @@ const Header = () => {
   const createUserElement = location.pathname === "/manager";
 
   useEffect(() => {
-    const getCookie = readCookie();
-    console.log(getCookie);
+    const fetchCookie = async () => {
+      const getCookie = await readCookie();
+      console.log(getCookie);
+      authValidate(getCookie);
 
-    authValidate(getCookie);
+    }
+
+    fetchCookie();
   }, []);
 
 
@@ -50,12 +54,13 @@ const Header = () => {
       headers: { "Comtent-Type": "application/json" },
       withCredentials: true
     });
-    if (response?.token) {
-      return response?.token;
+    if (response?.data?.token) {
+      console.log(response?.data?.token)
+      return response.data.token;
     }
   }
 
-  const authValidate = async (token: Promise<string> | null) => {
+  const authValidate = async (token: string | null) => {
     const data = { token };
     const response = await callApi({
       method: "POST",
