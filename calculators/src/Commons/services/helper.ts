@@ -1,4 +1,4 @@
-export const localizedCurrency = (number:number) => {
+export const localizedCurrency = (number: number) => {
     return number.toLocaleString('en-IN', {
         style: 'currency',
         currency: 'INR',
@@ -7,7 +7,7 @@ export const localizedCurrency = (number:number) => {
 }
 
 
-export const calculateFutureYears = (period:number):string => {
+export const calculateFutureYears = (period: number): string => {
     const monthNames = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -22,7 +22,7 @@ export const calculateFutureYears = (period:number):string => {
 }
 
 
-export const readCookie = (key:string) => {
+/* export const readCookie = (key:string) => {
     const cookie = document.cookie;
     const cookies = cookie.split(";");
     let result = null;
@@ -33,9 +33,9 @@ export const readCookie = (key:string) => {
         }
     })
     return result;
-}
+} */
 
-export const deleteCookie = (name:string) => {
+export const deleteCookie = (name: string) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC`
 
 
