@@ -55,7 +55,7 @@ app.use("/manager", requireRole(["manager", "admin"]), (req, res) => {
     res.send("Manager Dashboard");
 })
 
-app.get("/read-cookie", (req, res) => {
+app.get("/bank-calculator/read-cookie", (req, res) => {
     const token = req.cookies.jwt;
     if (token) {
         res.status(200).json({ token })
