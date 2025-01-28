@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { ApiContext } from "../../../Context/ApiContext";
 //import { ApiProviderPropsTypes } from "../../../Context/types";
 
-import { deleteCookie, readCookie } from "../../services/helper";
+import { deleteCookie } from "../../services/helper";
 import callApi from "../../services/api";
 import { useLocation } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
@@ -36,13 +36,26 @@ const Header = () => {
   const createUserElement = location.pathname === "/manager";
 
   useEffect(() => {
-    const getCookie = readCookie("jwt");
+    const getCookie = readCookie();
     console.log(getCookie);
 
     authValidate(getCookie);
   }, []);
 
-  const authValidate = async (token: string | null) => {
+
+  const readCookie = async () => {
+    const response = await callApi({
+      method: "GET",
+      url: `${baseurl}/read-cookie`,
+      headers: { "Comtent-Type": "application/json" },
+      withCredentials: true
+    });
+    if (response?.token) {
+      return response?.token;
+    }
+  }
+
+  const authValidate = async (token: Promise<string> | null) => {
     const data = { token };
     const response = await callApi({
       method: "POST",
