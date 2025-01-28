@@ -54,6 +54,16 @@ app.use(adminroutes)
 app.use("/manager", requireRole(["manager", "admin"]), (req, res) => {
     res.send("Manager Dashboard");
 })
+
+app.get("/read-cookie", (req, res) => {
+    const token = req.cookies.jwt;
+    if (token) {
+        res.status(200).json({ token })
+    } else {
+        res.status(404).json({ message: "Cookie not found" })
+    }
+
+})
 createManagerAccount()
 
 
