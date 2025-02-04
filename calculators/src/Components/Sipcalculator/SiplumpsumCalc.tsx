@@ -15,9 +15,6 @@ const SiplumpsumCalc = () => {
   //const { calculatorType } = useParams<{ calculatorType: string }>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const calculatorType = location.pathname.split("/")[1];
-  console.log(calculatorType, "jesal")
-
-
 
   useEffect(() => {
     const getData = async () => {
@@ -47,9 +44,9 @@ const SiplumpsumCalc = () => {
     : getSipCalculation(sliderValue);
   console.log(sipResult);
 
-  if (isLoading) {
+  /* if (isLoading) {
     return <div>Loading...</div>;
-  }
+  } */
   return (
     <>
       <Calculator
