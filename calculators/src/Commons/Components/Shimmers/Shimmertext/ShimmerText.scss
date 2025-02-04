@@ -1,0 +1,38 @@
+@import "../../../Styles/mediaQuery.scss";
+
+.shimmer-text {
+    border-radius: 8px;
+
+    &.sm {
+        width: 109px;
+        height: 14px;
+
+        @include mobile {
+            width: 105px;
+            height: 12px;
+        }
+    }
+
+    &.md {
+        width: 115px;
+        height: 18px;
+        margin-bottom: 5px;
+
+        @include mobile {
+            width: 102.5px;
+            height: 16px
+        }
+    }
+
+    &.lg {
+        width: 95%;
+        height: 8px;
+
+        @include mobile {
+            width: 95%;
+
+        }
+    }
+
+
+}

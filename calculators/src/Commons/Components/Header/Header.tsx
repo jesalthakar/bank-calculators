@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
 import { INITIALS } from "../../../ActionTypes";
+import ShimmerCircle from "../Shimmers/Shimmercircle/ShimmerCircle";
 const baseurl = process.env.REACT_APP_API_BASE_URL;
 
 const Header = () => {
@@ -51,7 +52,7 @@ const Header = () => {
     const response = await callApi({
       method: "GET",
       url: `${baseurl}/read-cookie`,
-      headers: { "Comtent-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       withCredentials: true
     });
     if (response?.data?.token) {
@@ -77,7 +78,6 @@ const Header = () => {
       setIsLoading(false)
       setUserLoggedIn(false); // Handle invalid token case
     }
-
   }
 
   const handleSignUp = () => {
@@ -112,16 +112,16 @@ const Header = () => {
     }
   }
 
-  if (isLoading) {
+  /* if (isLoading) {
     return <div>Loading...</div>;
-  }
+  } */
 
   return (
     <>
       <div className="header-container">
-        <div className="img-container">
-          <img src="a.jpg" />
-        </div>
+        {!isLoading ? <div className="img-container">
+          <img src="a.jpg" alt="no image" />
+        </div> : <ShimmerCircle />}
         <div className="auth-container">
           {!userLoggedIn ? (
             <>

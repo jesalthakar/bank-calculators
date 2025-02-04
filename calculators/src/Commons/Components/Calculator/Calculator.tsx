@@ -7,6 +7,9 @@ import Slider from "../Slider/Slider";
 import Chart from "../Chart/Chart";
 import { localizedCurrency } from "../../services/helper";
 import { CalculatorComponentTypes } from "./types";
+import { ShimmerRectangle } from "../Shimmers/Shimmerrectangle/ShimmerRectangle";
+import { ShimmerText } from "../Shimmers/Shimmertext/ShimmerText";
+
 
 
 
@@ -31,7 +34,7 @@ const Calculator: React.FC<CalculatorComponentTypes> = ({
     <>
       <div className="left-section">
         <div className="tabs-container">
-          {data.map((tabText, index) => (
+          {!isLoading ? data.map((tabText, index) => (
             <div
               key={index}
               className={`tabs ${activeTab === index ? "active" : ""}`}
@@ -39,11 +42,11 @@ const Calculator: React.FC<CalculatorComponentTypes> = ({
             >
               {tabText.calText}
             </div>
-          ))}
+          )) : <ShimmerRectangle shimmertype={"sm"} count={2} />}
         </div>
 
         <div className="calculator-inputs-container">
-          {data[activeTab].rangeinfo.map((sliderInfo, index) => (
+          {data?.[activeTab]?.rangeinfo?.map((sliderInfo, index) => (
             <Slider
               key={index}
               sliderInfo={sliderInfo}
@@ -52,12 +55,13 @@ const Calculator: React.FC<CalculatorComponentTypes> = ({
               handleInput={handleInput}
               handleSlider={handleSlider}
               error={error}
+              isLoading={isLoading}
             />
           ))}
         </div>
       </div>
 
-      {<div className="right-section">
+      {!isLoading ? <div className="right-section">
         <div className="sticky-section-mob">
           <div className="primary-container">
             <div className="primary-info-container">
@@ -95,7 +99,7 @@ const Calculator: React.FC<CalculatorComponentTypes> = ({
             </div>
           </div>
         </div>
-      </div>}
+      </div> : <ShimmerRectangle shimmertype={"lg"} count={1} />}
     </>
   );
 };
